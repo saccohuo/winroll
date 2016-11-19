@@ -1,0 +1,23 @@
+LIBRARY winroll
+EXPORTS
+WR_Start
+WR_Stop
+WR_RollupAll
+WR_UnrollAll
+WR_InvertRollAll
+WR_ToTrayAll
+WR_FromTrayAll
+WR_ToAlphaAll
+WR_FromAlphaAll
+WR_InvertAlphaAll
+WR_SetConfig
+WR_Rollup
+WR_Unroll
+WR_InvertRoll
+WR_ToBack
+WR_OnTop
+WR_ToTray
+WR_FromTray
+WR_ToAlpha
+WR_FromAlpha
+WR_InvertAlpha

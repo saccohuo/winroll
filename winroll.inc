@@ -1,0 +1,25 @@
+.const
+szAppClass        db  "WinRollClass",0
+szAppTitle        db  "WinRoll",0
+
+WM_WR_ICON        equ WM_USER + 0
+WM_WR_ROLLUP      equ WM_USER + 1
+WM_WR_UNROLL      equ WM_USER + 2
+WM_WR_INVERTROLL  equ WM_USER + 3
+WM_WR_TOBACK      equ WM_USER + 4
+WM_WR_ONTOP       equ WM_USER + 5
+WM_WR_MIN         equ WM_USER + 6
+WM_WR_MAX         equ WM_USER + 7
+WM_WR_CLOSE       equ WM_USER + 8
+WM_WR_TOTRAY      equ WM_USER + 9
+WM_WR_FROMTRAY    equ WM_USER + 10
+WM_WR_TOALPHA     equ WM_USER + 11
+WM_WR_FROMALPHA   equ WM_USER + 12
+WM_WR_INVERTALPHA equ WM_USER + 13
+
+CFG_ENABLE        equ 80000000H
+CFG_TRANSPARENCY  equ 000000FFH
+CFG_AUTOSTART     equ 00000100H
+CFG_HIDEICON      equ 00000200H
+CFG_NOMIDDLE      equ 00000400H
+CFG_MINASMENU     equ 00000800H

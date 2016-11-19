@@ -1,0 +1,183 @@
+/*
+;-------------------------------------------------------------------------------
+;
+;  WinRoll 2.0 - WinRoll easily manages multiple open windows.
+;  Copyright (C) 2003-2004 Wil Palma <wilpalma@hotmail.com>
+;
+;  This software is provided 'as-is', without any express or implied
+;  warranty.  In no event will the authors be held liable for any damages
+;  arising from the use of this software.
+;
+;  Permission is granted to anyone to use this software for any purpose,
+;  including commercial applications, and to alter it and redistribute it
+;  freely, subject to the following restrictions:
+;
+;  1. The origin of this software must not be misrepresented; you must not
+;     claim that you wrote the original software. If you use this software
+;     in a product, an acknowledgment in the product documentation would be
+;     appreciated but is not required.
+;  2. Altered source versions must be plainly marked as such, and must not be
+;     misrepresented as being the original software.
+;  3. This notice may not be removed or altered from any source distribution.
+;
+;-------------------------------------------------------------------------------
+*/
+
+#include "\masm32\include\resource.h"
+//#include "language.h"
+
+#define TRACKBAR_CLASS "msctls_trackbar32"
+#define TRACKBAR_STYLE WS_TABSTOP | TBS_AUTOTICKS | TBS_BOTTOM | TBS_ENABLESELRANGE | TBS_TOOLTIPS
+
+#define IDD_ABOUT     100
+#define IDC_HOWTO     101
+#define IDC_EMAIL     102
+#define IDC_WEBSITE   103
+
+#define IDD_OPTIONS   110
+#define IDC_AUTOSTART 111
+#define IDC_HIDEICON  112
+#define IDC_NOMIDDLE  113
+#define IDC_ALPHA     114
+#define IDC_ASICON    115
+#define IDC_ASMENU    116
+
+#define IDM_MENU      120
+#define IDM_MINMENU   121
+#define IDM_MINNONE   122
+#define IDM_ENABLE    123
+#define IDM_OPTIONS   124
+#define IDM_ABOUT     125
+#define IDM_EXIT      126
+
+#define IDS_DEFAULT   131
+#define IDS_CAPTION   132
+#define IDS_MINIMIZE  133
+#define IDS_MAXIMIZE  134
+#define IDS_CLOSE     135
+#define IDS_NOMIN     136
+
+#define IDI_ICON1     141
+#define IDI_ICON2     142
+
+#define IDC_FINGER    151
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Language neutral resources
+//
+
+//LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Icons
+//
+
+IDI_ICON1 ICON "winroll1.ico"
+IDI_ICON2 ICON "winroll2.ico"
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Cursors
+//
+
+IDC_FINGER CURSOR "finger.cur"
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// English resources
+//
+
+//LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
+//#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 196, 80
+STYLE   DS_CENTER | DS_MODALFRAME | WS_OVERLAPPEDWINDOW
+CAPTION "WinRoll 2.0 - About"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT         "",
+                  IDC_HOWTO,     8,  8, 180, 40
+    LTEXT         "Contacts:",
+                  IDC_STATIC,    8, 52,  30, 10
+    CTEXT         "email",
+                  IDC_EMAIL,    48, 52,  16, 10, SS_NOTIFY
+    CTEXT         "website",
+                  IDC_WEBSITE,  72, 52,  24, 10, SS_NOTIFY
+    LTEXT         "Copyright (C) 2003-2004 Wil Palma",
+                  IDC_STATIC,    8, 64, 112,  8
+    DEFPUSHBUTTON "OK",
+                  IDOK,        150, 56,  36, 14
+END
+
+IDD_OPTIONS DIALOGEX 0, 0, 150, 136
+STYLE   DS_CENTER | DS_MODALFRAME | WS_CAPTION | WS_POPUP | WS_SYSMENU
+CAPTION "WinRoll 2.0 - Options"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    AUTOCHECKBOX    "&Automatically start with windows",
+                    IDC_AUTOSTART,   8,   8, 134, 10
+    AUTOCHECKBOX    "&Hide icon, re-start to show again",
+                    IDC_HIDEICON,    8,  20, 134, 10
+    AUTOCHECKBOX    "&Ignore middle mouse button",
+                    IDC_NOMIDDLE,    8,  32, 134, 10
+    GROUPBOX        "&Transparency",
+                    IDC_STATIC,      8,  44, 134, 28
+    CONTROL         "",
+                    IDC_ALPHA, TRACKBAR_CLASS, TRACKBAR_STYLE,
+                                    10,  54, 130, 12
+    GROUPBOX        "&Minimize to tray",
+                    IDC_STATIC,      8,  76, 134, 28
+    AUTORADIOBUTTON "As icon",
+                    IDC_ASICON,     28,  88,  40, 10
+    AUTORADIOBUTTON "As menu",
+                    IDC_ASMENU,     84,  88,  40, 10
+    DEFPUSHBUTTON   "OK",
+                    IDOK,           28, 112,  40, 14
+    PUSHBUTTON      "Cancel",
+                    IDCANCEL,       84, 112,  40, 14
+END
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Menus
+//
+
+IDM_MENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        POPUP "&Minimized"
+        BEGIN
+            MENUITEM "(none)",  IDM_MINNONE
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Enable",     IDM_ENABLE, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "&Options...", IDM_OPTIONS
+        MENUITEM "&About...",   IDM_ABOUT
+        MENUITEM "E&xit",       IDM_EXIT
+    END
+END
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_DEFAULT  "For help, position mouse over the title bar, minimize, maximize or close buttons."
+    IDS_CAPTION  "(*) Right click rolls up/unrolls a window.\n(*) Middle or Shift + Right click to change transparency.\n\n\n* Alt key for all windows."
+    IDS_MINIMIZE "(*) Left click minimizes a window.\n(*) Right click rolls up a window.\n(*) Middle or Shift + Right click minimizes to tray.\n\n* Alt key for all windows."
+    IDS_MAXIMIZE "(*) Left click maximizes a window.\n(*) Right click unrolls a window.\n\n\n* Alt key for all windows."
+    IDS_CLOSE    "(*) Left click closes a window.\nRight click sends a window to the back.\nMiddle or Shift + Right click to change always on top.\n\n* Alt key for all windows."
+    IDS_NOMIN    "(none)"
+END
